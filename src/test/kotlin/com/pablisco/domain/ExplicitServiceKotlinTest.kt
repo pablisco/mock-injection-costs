@@ -18,7 +18,7 @@ class ExplicitServiceKotlinTest {
     @Test
     fun `should fetch data from api client`() {
         val service = Service(stub<ApiClient> {
-            fetchAll() willReturn API_DATA
+            fetchAll() returns API_DATA
         })
 
         val items = service.fetchAllItems()
@@ -29,7 +29,7 @@ class ExplicitServiceKotlinTest {
     @Test
     fun `should return nothing when api client fails`() {
         val service = Service(stub<ApiClient> {
-            fetchAll() willThrow ::RuntimeException
+            fetchAll() throws ::RuntimeException
         })
 
         val items = service.fetchAllItems()
